@@ -15,6 +15,12 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('product_id')->unsigned();
+            $table->unsignedInteger('subcategory_id')->unsigned();
+            $table->string('name');
+
+            $table->foreign('subcategory_id')->references('id')->on('categories');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }

@@ -15,6 +15,14 @@ class CreateBillingAddressesTable extends Migration
     {
         Schema::create('billing_addresses', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->unsigned();
+            $table->string('state');
+            $table->string('city');
+            $table->string('district');
+            $table->string('address');
+            $table->integer('number');
+            
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
